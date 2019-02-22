@@ -8,7 +8,12 @@ import youtube_dl
 import pandas as pd
 
 def read_data(filename):
-    df = pd.read_csv(filename)
+    try:
+        df = pd.read_csv(filename)
+    except (OSError, IOError) as err:
+        self.report_error('unable to read file ' + filename + error_to_compat_str(err))
+        exit(1)
+
     data = df[df.columns[0]].values
     data = list(dict.fromkeys(data)) # remove duplicates 
     return data     
@@ -29,8 +34,11 @@ def download(datasetfile, savedir):
     data = read_data(datasetfile)
     ydownloader_opts = {'outtmpl': savedir + '\%(id)s.%(ext)s'}
     ydownloader = youtube_dl.YoutubeDL(ydownloader_opts)
-    with ydownloader:
-        [ydownloader.download(['http://www.youtube.com/watch?v='+video]) for video in data]
+    try:
+        with ydownloader:
+            [ydownloader.download(['http://www.youtube.com/watch?v='+video]) for video in data]
+    except (OSError, IOError) as err:
+        self.report_error('This video is unavailable ' + video + error_to_compat_str(err))
 
 def main():
     # Download 'train' or 'test' or 'val' dataset separately
