@@ -6,12 +6,15 @@ __pycache__/
 # C extensions
 *.so
 
-# Custom Directories
+# Custom Directories & Files
 test/
 train/
 val/
 ava_dataset/
 annotations/
+*.csv
+*.txt
+*.html
 
 # Distribution / packaging
 .Python
