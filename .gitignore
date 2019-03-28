@@ -10,6 +10,8 @@ __pycache__/
 test/
 train/
 val/
+ava_dataset/
+annotations/
 
 # Distribution / packaging
 .Python
