@@ -51,7 +51,8 @@ def download(datasetfile, savedir):
             # print('This video is unavailable ' + video + str(IOError))
             missing_videos.append(video)
             continue
-    file = os.path.join(savedir,'missing_videos.txt' )
+    # file = os.path.join(savedir,'missing_videos.txt' )
+    file = 'missing_videos.txt'
     f = open(file, "a")
     f.write("================%s==============\n"%(savedir))
     for  i in missing_videos:
