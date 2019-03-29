@@ -34,7 +34,11 @@ def dir_exists(path):
 def download(datasetfile, savedir):
     data = read_data(datasetfile)
     missing_videos = []
-    ydownloader_opts = {'outtmpl': savedir + '\%(id)s.%(ext)s'}
+    # Check OS
+    if os.name == 'nt':
+        ydownloader_opts = {'outtmpl': savedir + '\%(id)s.%(ext)s'}
+    else:
+        ydownloader_opts = {'outtmpl': savedir + '/%(id)s.%(ext)s'}
     ydownloader = youtube_dl.YoutubeDL(ydownloader_opts)
     for video in data:
         try:
