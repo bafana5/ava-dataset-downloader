@@ -10,9 +10,7 @@ __pycache__/
 test/
 train/
 val/
-ava_dataset/
 annotations/
-*.csv
 *.txt
 *.html
 
