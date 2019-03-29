@@ -22,7 +22,7 @@ class VideoExtractor:
         """
         self.frame_size = (416, 416)
         self.inputvideopath = inputvideopath
-        self.outoutframepath = outputframepath
+        self.outputframepath = outputframepath
         self.ava_dataset_path = "ava_dataset"
         self.train_annotations_path = "annotations"
 
@@ -58,6 +58,9 @@ class VideoExtractor:
         if not dir_exists(self.train_annotations_path):
             return
 
+        if not dir_exists(self.outputframepath):
+            return
+            
         file = os.path.join(self.train_annotations_path, 'train.txt')
 
         f = open(file, "a")
@@ -90,8 +93,7 @@ class VideoExtractor:
 
                             if success:
                                 # Read frame
-                                imagename = 'trainimages' + "/" + \
-                                    video_name[:-4] + "_%06d.jpg" % sec
+                                imagename = self.outputframepath + "/" + video_name[:-4] + "_%06d.jpg" % sec
                                 image = cv2.resize(
                                     image, (w, h), interpolation=cv2.INTER_AREA)
                                 # save frame as JPEG file
