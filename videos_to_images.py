@@ -1,12 +1,12 @@
-__version__ = '0.0'
-__author__ = 'Meshack B. Shabalala'
+# __version__ = '0.0'
+# __author__ = 'Meshack B. Shabalala'
 
 
 import os
 import cv2
 import numpy as np
 import pandas as pd
-from os.path import basename
+# from os.path import basename
 from ava_dataset_downloader import dir_exists
 
 class VideoExtractor:
@@ -40,7 +40,7 @@ class VideoExtractor:
         """
         # Read annotaions and images
         annotationsfile = "ava_train_v2.1.csv"
-        annotationsfilepath = os.path.join(ava_dataset_path, annotationsfile)
+        annotationsfilepath = os.path.join(self.ava_dataset_path, annotationsfile)
         df = pd.read_csv(annotationsfilepath, delimiter=',')
         data = df[df.columns[:]].values
 
@@ -60,7 +60,7 @@ class VideoExtractor:
 
         if not dir_exists(self.outputframepath):
             return
-            
+
         file = os.path.join(self.train_annotations_path, 'train.txt')
 
         f = open(file, "a")
